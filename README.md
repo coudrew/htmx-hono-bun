@@ -1,6 +1,6 @@
 # HTMX and Hono on a Bun
 
-A modern web application built with HTMX for dynamic frontend interactions, Hono as the lightweight web framework, and Bun as the JavaScript runtime.
+A modern web application built with HTMX for dynamic frontend interactions, Hono's type-safe JSX components for server-side rendering, and Bun as the JavaScript runtime.
 
 ## Features
 
@@ -51,7 +51,7 @@ bun run start
 ```
 htmx/
 ├── src/
-│   ├── index.ts          # Main server file with Hono routes
+│   ├── index.tsx         # Main server file with Hono JSX routes
 │   └── views/            # HTML templates (for future expansion)
 ├── public/               # Static assets
 ├── package.json          # Dependencies and scripts
@@ -95,6 +95,42 @@ Smooth fade-in animations using CSS and HTMX.
 - **[ESLint](https://eslint.org/)** - Code linting
 - **[Prettier](https://prettier.io/)** - Code formatting
 
+## JSX Configuration
+
+This project uses Hono's built-in JSX support for type-safe, server-side rendered components:
+
+### Key Configuration Points
+
+- **File Extensions**: JSX components use `.tsx` extension
+- **TypeScript Config**: Configured with `"jsx": "react-jsx"` and `"jsxImportSource": "hono/jsx"`
+- **No React Dependency**: Uses Hono's JSX implementation, not React
+- **HTMX Attributes**: Full support for HTMX attributes in JSX (e.g., `hx-get`, `hx-post`)
+
+### JSX Syntax Notes
+
+- Use `class` instead of `className` for CSS classes
+- HTMX attributes work directly: `<button hx-post="/api/endpoint">Click</button>`
+- Components are simple functions returning JSX elements
+- Props are typed with TypeScript interfaces
+- No need to import `React` or use `FC` types
+
+### Example Component
+
+```typescript
+interface ButtonProps {
+  endpoint: string;
+  children: string;
+}
+
+export const HTMXButton = ({ endpoint, children }: ButtonProps) => {
+  return (
+    <button hx-post={endpoint} hx-target="#result" class="btn-primary">
+      {children}
+    </button>
+  );
+};
+```
+
 ## Development Scripts
 
 ```bash
@@ -126,11 +162,13 @@ bun run format
 
 ### Adding New Routes
 
-Add routes to `src/index.ts`:
+Add routes to `src/index.tsx`:
 
 ```typescript
+import { NewComponent } from './components/NewComponent'
+
 app.get('/new-route', (c) => {
-  return c.html('<h1>New Route</h1>')
+  return c.html(<NewComponent />)
 })
 ```
 
@@ -144,6 +182,14 @@ For persistent data, consider adding:
 - SQLite with Bun's built-in SQLite support
 - PostgreSQL with a client like `postgres`
 - Or any database of your choice
+
+### JSX Component Tips
+
+- Use TypeScript interfaces for prop validation
+- Leverage HTMX attributes directly in JSX (`hx-get`, `hx-post`, etc.)
+- Create reusable layout components for consistent styling
+- Utilize the `class` attribute (not `className`) for CSS classes in Hono JSX
+- Components are functions that return JSX, no need for `FC` type imports
 
 ## Performance Notes
 
