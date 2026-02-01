@@ -1,4 +1,4 @@
-# HTMX + Hono + Bun Project
+# HTMX and Hono on a Bun
 
 A modern web application built with HTMX for dynamic frontend interactions, Hono as the lightweight web framework, and Bun as the JavaScript runtime.
 
