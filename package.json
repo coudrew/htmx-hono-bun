@@ -1,16 +1,23 @@
 {
   "name": "htmx-hono-project",
   "version": "1.0.0",
-  "description": "HTMX project with Hono backend on Bun",
-  "main": "src/index.ts",
+  "description": "HTMX project with Hono JSX backend on Bun",
+  "main": "src/index.tsx",
   "scripts": {
-    "dev": "bun run --hot src/index.ts",
-    "start": "bun run src/index.ts",
-    "build": "bun build src/index.ts --outdir=dist --target=bun",
+    "dev": "bun run --hot src/index.tsx",
+    "start": "bun run src/index.tsx",
+    "build": "bun build src/index.tsx --outdir=dist --target=bun",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --write src/**/*.{ts,tsx,html,css}"
   },
-  "keywords": ["htmx", "hono", "bun", "typescript"],
+  "keywords": [
+    "htmx",
+    "hono",
+    "bun",
+    "typescript",
+    "jsx",
+    "server-side-rendering"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {

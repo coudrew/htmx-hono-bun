@@ -7,28 +7,18 @@
     "allowImportingTsExtensions": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "composite": false,
     "strict": true,
-    "downlevelIteration": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    "types": [
-      "bun-types"
-    ],
+    "types": ["bun-types"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "build"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "build"],
 }
